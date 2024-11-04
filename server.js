@@ -39,9 +39,10 @@ app.use((req, res, next) => {
 */
 
 app.get('/grab', (req, res) => { // captura los datos enviados por el cliente
+    const escapeHtml = require('escape-html');
     const data = req.query.data;
     if(data){
-        texto += data + "\n";
+        texto += escapeHtml(data) + "\n";
         res.send('Datos guardados correctamente.');
     } else {
         res.status(400).send('No se proporcionó ningún dato.');
